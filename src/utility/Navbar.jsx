@@ -38,11 +38,17 @@ function Navbar() {
   });
 
   const menuSpring = useSpring({
-    transform: inView ? "translateX(0)" : "translateX(100px)",
+    opacity: inView ? 1 : 0,
+    transform: inView
+      ? "translateX(-100px)"
+      : inView
+      ? "translateX(0)"
+      : "translateX(-100px)",
     config: { duration: 500 },
   });
 
   const logoSpring = useSpring({
+    opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(-100px)",
     config: { duration: 500 },
   });
@@ -55,7 +61,7 @@ function Navbar() {
         ref={ref}
         style={logoSpring}
       />
-      <animated.div className="a" style={menuSpring}>
+      <animated.div className="a" ref={ref} style={menuSpring}>
         <Menu btnClass="contact-us" listClass="list" />
       </animated.div>
 
@@ -67,7 +73,7 @@ function Navbar() {
       />
       {transition((style, item) =>
         item ? (
-          <animated.div style={style} className="menu" ref={ref}>
+          <animated.div style={style} className="menu">
             <Menu btnClass="menu-btn" listClass="menu-list" />
           </animated.div>
         ) : null
