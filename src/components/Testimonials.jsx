@@ -16,7 +16,6 @@ const Testimonials = () => {
     { user: student_1 },
     { user: student_2 },
     { user: student_3 },
-    { user: student_4 },
   ];
 
   const slider = useRef();
@@ -69,6 +68,9 @@ const Testimonials = () => {
               <User user={slide.user} />
             </li>
           ))}
+          <li className="user spetial">
+            <User user={student_4} />
+          </li>
         </ul>
       </div>
     </div>

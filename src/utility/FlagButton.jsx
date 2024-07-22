@@ -11,7 +11,7 @@ const FlagButton = ({ btnText, arrowColorWhite }) => {
 };
 
 FlagButton.propTypes = {
-  arrowColorWhite: PropTypes.string.isRequired,
+  arrowColorWhite: PropTypes.bool,
   btnText: PropTypes.string,
 };
 

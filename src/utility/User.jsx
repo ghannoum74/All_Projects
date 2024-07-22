@@ -19,4 +19,8 @@ const User = ({ user }) => {
   );
 };
 
+User.propTypes = {
+  user: PropTypes.string,
+};
+
 export default User;

@@ -12,6 +12,10 @@
   font-family: "Outfit", sans-serif;
 }
 
+#root {
+  overflow-x: hidden;
+}
+
 body {
   user-select: none;
 }
@@ -672,6 +676,9 @@ body {
   .slide.testimonials ul li,
   .slider .user .slide {
     padding: 10px;
+  }
+  .testimonials ul li.user.spetial {
+    display: none;
   }
 }
 @media (max-width: 500px) {
