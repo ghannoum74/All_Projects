@@ -8,25 +8,35 @@ import program_icon_3 from "../assets/program-icon-3.png";
 import { useSpring, animated } from "@react-spring/web";
 import { useInView } from "react-intersection-observer";
 const Cards = () => {
-  const { ref, inView } = useInView({
+  // i use for each one ref because of any of them is in the view it will mountin all the motion
+  const { ref: refOne, inView: inViewOne } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+  const { ref: refTwo, inView: inViewTwo } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+  const { ref: refThree, inView: inViewThree } = useInView({
     triggerOnce: false,
     threshold: 0.1,
   });
 
+  // Spring animations for each card
   const cardMotionOne = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? "translateY(0px)" : "translateY(-100px)",
+    opacity: inViewOne ? 1 : 0,
+    transform: inViewOne ? "translateY(0)" : "translateY(-100px)",
     config: { duration: 500 },
   });
   const cardMotionTwo = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? "translateY(0px)" : "translateY(100px)",
+    opacity: inViewTwo ? 1 : 0,
+    transform: inViewTwo ? "translateY(0)" : "translateY(100px)",
     config: { duration: 500 },
     delay: 300,
   });
   const cardMotionThree = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? "translateY(0px)" : "translateY(-100px)",
+    opacity: inViewThree ? 1 : 0,
+    transform: inViewThree ? "translateY(0)" : "translateY(-100px)",
     config: { duration: 500 },
     delay: 600,
   });
@@ -35,7 +45,7 @@ const Cards = () => {
       <Titles supTitle="OUR PROGRAM" title="What We Offer" />
       <div className="profiles">
         {/* hoon zwadett class caption l2an ana bdi backg lal details tetghayar w caption ytharraku */}
-        <animated.div className="eachPrf" ref={ref} style={cardMotionOne}>
+        <animated.div className="eachPrf" ref={refOne} style={cardMotionOne}>
           <img src={program_1} alt="" />
           <div className="details">
             <div className="caption">
@@ -44,7 +54,7 @@ const Cards = () => {
             </div>
           </div>
         </animated.div>
-        <animated.div className="eachPrf" ref={ref} style={cardMotionTwo}>
+        <animated.div className="eachPrf" style={cardMotionTwo} ref={refTwo}>
           <img src={program_2} alt="" />
           <div className="details">
             {/* hoon zwadett class caption l2an ana bdi backg lal details tetghayar w caption ytharraku */}
@@ -54,7 +64,11 @@ const Cards = () => {
             </div>
           </div>
         </animated.div>
-        <animated.div className="eachPrf" ref={ref} style={cardMotionThree}>
+        <animated.div
+          className="eachPrf"
+          style={cardMotionThree}
+          ref={refThree}
+        >
           <img src={program_3} alt="" />
           <div className="details">
             {/* hoon zwadett class caption l2an ana bdi backg lal details tetghayar w caption ytharraku */}

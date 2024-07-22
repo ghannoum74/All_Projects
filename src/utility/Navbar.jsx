@@ -38,13 +38,11 @@ function Navbar() {
   });
 
   const menuSpring = useSpring({
-    opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(100px)",
     config: { duration: 500 },
   });
 
   const logoSpring = useSpring({
-    opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(-100px)",
     config: { duration: 500 },
   });
