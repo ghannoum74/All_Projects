@@ -15,13 +15,6 @@ const About = () => {
     threshold: 0.1,
   });
 
-  // Animations for the "about" section
-  const aboutAnimation = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? "translateX(0px)" : "translateX(-100px)",
-    config: { duration: 500 },
-  });
-
   // Animations for the second "about" section
   const aboutTextAnimation = useSpring({
     opacity: inView ? 1 : 0,
@@ -32,7 +25,7 @@ const About = () => {
 
   return (
     <div className="container-about" name="about">
-      <animated.div className="about" style={aboutAnimation} ref={ref}>
+      <animated.div className="about">
         <img className="frame" src={about} alt="" />
         <img
           className="playIcon"
@@ -43,7 +36,7 @@ const About = () => {
         <Video showVideo={showVideo} setShowVideo={setShowVideo} />
       </animated.div>
 
-      <animated.div className="about" style={aboutTextAnimation}>
+      <animated.div className="about" style={aboutTextAnimation} ref={ref}>
         <div className="sup-title about-sup-title">ABOUT UNIVERSITY</div>
         <h1 className="title about-title">
           Nurturing Tomorrow&apos;s Leaders Today

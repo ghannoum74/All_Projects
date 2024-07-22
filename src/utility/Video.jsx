@@ -20,4 +20,9 @@ const Video = ({ showVideo, setShowVideo }) => {
   );
 };
 
+Video.propTypes = {
+  showVideo: PropTypes.bool,
+  setShowVideo: PropTypes.bool,
+};
+
 export default Video;

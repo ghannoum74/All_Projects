@@ -8,4 +8,9 @@ const Titles = ({ supTitle, title }) => {
   );
 };
 
+Titles.propTypes = {
+  supTitle: PropTypes.string,
+  title: PropTypes.string,
+};
+
 export default Titles;
