@@ -4,14 +4,8 @@ import mail from "../assets/mail-icon.png";
 import phone from "../assets/phone-icon.png";
 import location from "../assets/location-icon.png";
 import flag2 from "../assets/white-arrow.png";
-import {
-  setDetails,
-  setEmail,
-  setFullName,
-  setPhoneNumber,
-} from "../state/fullDataSlice";
+import axios from "axios";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 
@@ -22,7 +16,7 @@ const Contact = () => {
     Email: "",
     Details: "",
   });
-  const dispatch = useDispatch();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFullData((prevState) => ({
@@ -31,15 +25,24 @@ const Contact = () => {
     }));
   };
 
-  const dispatchAllData = () => {
-    dispatch(setFullName({ Fullname: fullData.Fullname }));
-    dispatch(setPhoneNumber({ PhoneNumber: fullData.PhoneNumber }));
-    dispatch(setEmail({ Email: fullData.Email }));
-    dispatch(setDetails({ Details: fullData.Details }));
-  };
-
-  const handleForm = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:5000/create", fullData);
+
+      if (res.status === 200) {
+        setFullData({
+          Fullname: "",
+          PhoneNumber: "",
+          Email: "",
+          Details: "",
+        });
+      } else {
+        console.log("Error: ", res.statusText);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const { ref, inView } = useInView({
@@ -59,7 +62,6 @@ const Contact = () => {
     config: { duration: 300 },
     delay: 300,
   });
-
   return (
     <div className="Contact" name="contact">
       <Titles supTitle="contact us" title="Get in Touch" />
@@ -97,9 +99,9 @@ const Contact = () => {
         <animated.div className="col" ref={ref} style={rightSide}>
           <form
             className="form"
-            action="/create-user"
+            action="/create"
             method="POST"
-            onClick={handleForm}
+            onSubmit={handleForm}
           >
             <ul>
               <li>
@@ -150,7 +152,7 @@ const Contact = () => {
                 onChange={handleInputChange}
               ></textarea>
             </ul>
-            <button className="btn-flag" onClick={dispatchAllData}>
+            <button type="submit" className="btn-flag">
               Submit now
               <img className="flag" src={flag2} alt="" />
             </button>

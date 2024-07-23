@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import toggleBlurbackg from "./blurBackgSlice";
-import fullDataSlice from "./fullDataSlice";
-export default configureStore({
+import toggleBlurbackgReducer from "./blurBackgSlice";
+
+const store = configureStore({
   reducer: {
-    toggleBackg: toggleBlurbackg,
-    fullData: fullDataSlice,
+    toggleBackg: toggleBlurbackgReducer,
   },
 });
+
+export default store;
