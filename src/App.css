@@ -4,7 +4,7 @@
   --titleColor: #000f38;
   --textColor: #676767;
   --app: #61dafb;
-  --errorColor: rgb(217, 48, 37);
+  --errorColor: #bb2525;
   --time: 500ms;
   box-sizing: border-box;
   margin: 0;
@@ -590,10 +590,29 @@ body {
 
 .form ul input,
 .form ul textarea {
+  border-radius: 3px;
   padding: 12px;
   width: 100%;
   border: none;
   background-color: #ebecfe;
+}
+
+.form ul input:focus,
+.form ul textarea:focus {
+  outline: none;
+}
+
+/* errorrr handling */
+.container-error {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 5px;
+  gap: 10px;
+}
+
+.error-message {
+  font-size: 13px;
 }
 
 /*Footer*/
@@ -696,4 +715,20 @@ body {
 .hide-arrow::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+/* popup and spinner */
+.popup-container {
+  position: "top-right";
+  background-color: white;
+  color: var(--main);
+  font-weight: 600;
+}
+
+.loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
 }
