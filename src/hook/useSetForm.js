@@ -8,7 +8,10 @@ const useSetForm = () => {
   const setForm = async (data) => {
     setIsPending(true);
     try {
-      const result = await axios.post("http://localhost:5000/create", data);
+      const result = await axios.post(
+        "https://universityproject-mern-server.onrender.com/create",
+        data
+      );
       setIsPending(false);
 
       if (result.status != 200) {
